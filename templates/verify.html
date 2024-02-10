@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weryfikacja</title>
+    <link rel="stylesheet" href="../static/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <h1>Weryfikacja</h1>
+    <form action="/verify" method="post">
+      <label for="verification_code">Kod weryfikacyjny:</label>
+      <input
+        type="text"
+        id="verification_code"
+        name="verification_code"
+        required
+      />
+
+      <button type="submit">Zweryfikuj</button>
+    </form>
+  </body>
+</html>

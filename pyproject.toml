@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "restapisqlalchemycontactmanagerv2"
+version = "0.1.0"
+description = "Yeap"
+authors = ["CamilleusRex <camilleusrex@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = {extras = ["all"], version = "^0.109.0"}
+uvicorn = {extras = ["standard"], version = "^0.27.0.post1"}
+datetime = "^5.4"
+sqlalchemy = "^1.4.42"
+databases = "^0.8.0"
+pydantic = "^2.6.0"
+sqlalchemy-orm = "^1.2.10"
+passlib = "^1.7.4"
+faker = "^22.6.0"
+mysql = "^0.0.3"
+alembic = "^1.13.1"
+pymysql = "^1.1.0"
+mysql-connector-python = "^8.3.0"
+python-jose = "^3.3.0"
+fastapi-limiter = "^0.1.6"
+python-dotenv = "^1.0.1"
+fastapi-middleware = "^0.1.0"
+cloudinary = "^1.38.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
