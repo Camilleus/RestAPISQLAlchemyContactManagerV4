@@ -1,30 +1,26 @@
 # RestAPISQLalchemyContactsManager
 
-tutaj działa, używam tutaj MySQL i XAMPP'a
+I'm using MySQL, MySQL Workbench and XAMPP programmes
 
-## Instalacja
+## Installation
 
-1. Sklonuj repozytorium: `git clone https://github.com/Camilleus/RestAPISQLalchemyContactsManagerV3.git`
-2. Przejdź do folderu projektu: `cd RestAPISQLalchemyContactsManagerV3`
+1. Sklonuj repozytorium: `git clone https://github.com/Camilleus/RestAPISQLalchemyContactsManagerV4.git`
+2. Przejdź do folderu projektu: `cd RestAPISQLalchemyContactsManagerV4`
 3. Zainstaluj zależności: `poetry install`
 4. Uruchom serwer: `uvicorn main:app --host localhost --port 8000 --reload`
 
 ## Requirements
 
-Wszystko ( a przynajmniej większość) w pliku requirements.txt
+Everything in poetry files
 
-## Przyszłe Rozszerzenia
-
-Powstanie jeszcze wersja V4 na potrzeby ukończenia kursu
-
-## Kontrybucje
+## Contributions
 
 Nie potrzebuję ale spoko jeśli takie sie ukażą
 
-## Struktura Projektu
+## Project Structure
 
 ```
-RestAPISQLAlchemyContactManagerV3
+RestAPISQLAlchemyContactManagerV4
 ├─ .gitattributes
 ├─ api
 │  ├─ apis.py
