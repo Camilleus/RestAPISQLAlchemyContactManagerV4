@@ -3,6 +3,9 @@ from datetime import date
 
 
 class ContactCreateUpdate(BaseModel):
+    """
+    Model Pydantic reprezentujący dane do tworzenia lub aktualizacji kontaktu.
+    """
     first_name: str
     last_name: str
     email: str
@@ -12,6 +15,9 @@ class ContactCreateUpdate(BaseModel):
     
     
 class ContactResponse(BaseModel):
+    """
+    Model Pydantic reprezentujący odpowiedź zawierającą dane kontaktowe.
+    """
     id: int
     first_name: str
     last_name: str
