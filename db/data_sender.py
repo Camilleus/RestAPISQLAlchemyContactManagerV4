@@ -7,6 +7,9 @@ load_dotenv()
 
 
 def import_data_to_mysql():
+    """
+    Importuje dane z pliku SQL do bazy danych MySQL.
+    """
     DATABASE_URL = os.getenv("DATABASE_URL")
     
     mysql_conn = mysql.connector.connect(
