@@ -24,6 +24,12 @@ Base.create_all(engine)
 Session = sessionmaker(bind=engine)
 
 def create_fake_contact():
+    """
+    Generuje losowe dane dla kontaktu.
+    
+    Returns:
+        dict: Słownik zawierający losowe dane dla kontaktu.
+    """
     return {
         "first_name": fake.first_name(),
         "last_name": fake.last_name(),
@@ -34,6 +40,9 @@ def create_fake_contact():
     }
 
 def seed_fake_data():
+    """
+    Generuje i zapisuje fikcyjne dane kontaktów do bazy danych.
+    """
     contacts_data = [create_fake_contact() for _ in range(50)]
 
     with engine.connect() as conn:
