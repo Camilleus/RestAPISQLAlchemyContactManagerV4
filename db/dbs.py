@@ -21,10 +21,16 @@ Base = declarative_base()
 
 
 def init_db():
+    """
+    Inicjuje bazę danych poprzez tworzenie wszystkich tabel zdefiniowanych w bazie.
+    """
     Base.metadata.create_all(bind=engine)
 
 
 def get_db():
+    """
+    Uzyskuje sesję bazy danych, która jest używana przez zasoby w aplikacji.
+    """
     db = SessionLocal()
     try:
         yield db
