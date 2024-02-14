@@ -39,12 +39,19 @@ RestAPISQLAlchemyContactManagerV4
 │  └─ __init__.py
 ├─ docker-compose.yaml
 ├─ main.py
+├─ make.bat
+├─ Makefile
 ├─ models.py
 ├─ poetry.lock
 ├─ pyproject.toml
 ├─ README.md
 ├─ requirements.txt
 ├─ schemas.py
+├─ source
+│  ├─ conf.py
+│  ├─ index.rst
+│  ├─ _static
+│  └─ _templates
 ├─ static
 │  └─ styles.css
 ├─ templates
