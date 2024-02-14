@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.abspath('C:\\IT\\Python\\RestAPISQLAlchemyContactMana
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'ContactManagerRestAPIMySQL'
+project = 'RestAPISQLAlchemyContactManagerV4'
 copyright = '2024, Camilleus'
 author = 'Camilleus'
 
