@@ -1,13 +1,14 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from fastapi import HTTPException
+from fastapi import HTTPException, Request
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from models import Contact, User, Token
 from auth.auths import get_current_active_user
 from api.apis import create_contact, get_all_contacts, get_contact, update_contact, delete_contact, get_birthdays_within_7_days
 from config import SECRET_KEY, ALGORITHM, oauth2_scheme
-
+from starlette.testclient import TestClient
+from endpoints import app
 
 class TestAPIs(unittest.TestCase):
 
@@ -50,5 +51,48 @@ class TestConfig(unittest.TestCase):
         self.assertIsInstance(oauth2_scheme, OAuth2PasswordBearer)
         
 
+class TestEndpoints(unittest.TestCase):
+
+    def setUp(self):
+        self.client = TestClient(app)
+
+    def test_read_root(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"index.html", response.content)
+
+    def test_read_login(self):
+        response = self.client.get("/login")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"login.html", response.content)
+
+    def test_login_user(self):
+        response = self.client.post("/login")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Logowanie udane", response.content)
+
+    def test_read_register(self):
+        response = self.client.get("/register")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"register.html", response.content)
+
+    def test_read_contacts(self):
+        response = self.client.get("/contacts")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"contacts.html", response.content)
+
+    def test_welcome(self):
+        response = self.client.get("/welcome")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"welcome.html", response.content)
+
+    def test_verify_email(self):
+        username = "test_user"
+        verification_token = "test_token"
+        response = self.client.get(f"/verify/{username}/{verification_token}")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"login", response.content)
+        
+        
 if __name__ == '__main__':
     unittest.main()
