@@ -9,6 +9,7 @@ from api.apis import create_contact, get_all_contacts, get_contact, update_conta
 from config import SECRET_KEY, ALGORITHM, oauth2_scheme
 from starlette.testclient import TestClient
 from endpoints import app
+from routes import router
 
 class TestAPIs(unittest.TestCase):
 
@@ -94,5 +95,29 @@ class TestEndpoints(unittest.TestCase):
         self.assertIn(b"login", response.content)
         
         
+class TestRoutes(unittest.TestCase):
+
+    def setUp(self):
+        self.client = TestClient(router)
+
+    def test_read_root(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"index.html", response.content)
+        self.assertIn(b"Hello, world!", response.content)
+
+    def test_refresh_token(self):
+        response = self.client.post("/refresh-token/")
+        self.assertEqual(response.status_code, 422)  
+        self.assertIn(b"detail", response.content)
+        self.assertIn(b"Missing", response.content)  
+
+    def test_refresh_token_with_token(self):
+        token = "valid_access_token"
+        response = self.client.post("/refresh-token/", data={"current_token": token})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"valid_access_token", response.content) 
+
+
 if __name__ == '__main__':
     unittest.main()
