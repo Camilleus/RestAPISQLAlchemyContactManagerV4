@@ -5,7 +5,8 @@ from jose import jwt
 from fastapi import HTTPException, status
 from jwts import create_jwt_token, decode_jwt_token
 from auths import authenticate_user, create_access_token, login_for_access_token, refresh_access_token, get_current_user, get_current_active_user, send_email
-from config import SECRET_KEY, ALGORITHM
+from api.config import SECRET_KEY, ALGORITHM
+
 
 class TestAuth(unittest.TestCase):
 
