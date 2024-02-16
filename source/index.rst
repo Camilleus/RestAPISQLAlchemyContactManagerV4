@@ -10,19 +10,18 @@ Welcome to ContactManagerRestAPIMySQL's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-      api/apis.py
-      api/config.py
-      api/endpoints.py
-      api/routes.py
-      auth/auths.py
-      auth/jwts.py
-      db/data_faker.py
-      db/data_sender.py
-      db/dbs.py
-      main.py
-      models.py
-      schemas.py
-
+      api/apis
+      api/config
+      api/endpoints
+      api/routes
+      auth/auths
+      auth/jwts
+      db/data_faker
+      db/data_sender
+      db/dbs
+      main
+      models
+      schemas
 
 
 Indices and tables
