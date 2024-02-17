@@ -24,6 +24,9 @@ app.include_router(router)
 
 # Udostępnij folder 'static' jako zasób statyczny
 app.mount("/static", StaticFiles(directory="static"), name="static")
+# Udostępnij folder 'templates' jako zasób wzorów
+app.mount("/templates", StaticFiles(directory="templates"), name="templates")
+
 
 
 # Inicjalizuj bazę danych
@@ -31,7 +34,7 @@ init_db()
 
 
 # Importy funkcji z pliku api.apis i klas z pliku schemas.py
-from api.apis import Contact, create_contact, get_all_contacts, get_contact, update_contact, delete_contact, get_birthdays_within_7_days
+from api.apis import create_contact, get_all_contacts, get_contact, update_contact, delete_contact, get_birthdays_within_7_days
 from schemas import ContactCreateUpdate, ContactResponse
 
 
