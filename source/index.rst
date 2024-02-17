@@ -22,6 +22,10 @@ Welcome to ContactManagerRestAPIMySQL's documentation!
       main
       models
       schemas
+      api
+      auth
+      db
+      source\main
 
 
 Indices and tables
