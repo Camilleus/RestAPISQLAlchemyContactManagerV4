@@ -1,14 +1,24 @@
-{% extends "base.html" %} {% block title %} Home - C. Rex x FastAPI {% endblock
-%} {% block content %}
-<h1>Welcome to my FastAPI App!</h1>
-<p>C'est la vie et quo vadis Polsko</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Home - C. Rex x FastAPI{% endblock %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/pico.min"></script>
+  </head>
+  <body>
+    <h1>Welcome to my FastAPI App!</h1>
+    <p>C'est la vie et quo vadis Polsko</p>
 
-<nav>
-  <ul>
-    <li><a href="/login">Log in</a></li>
-    <li><a href="/register">Sing in</a></li>
-    <li><a href="/contacts">Contacts</a></li>
-  </ul>
-</nav>
+    <nav>
+      <ul>
+        <li><a href="/login">Log in</a></li>
+        <li><a href="/register">Sign in</a></li>
+        <li><a href="/contacts">Contacts</a></li>
+      </ul>
+    </nav>
 
-{% endblock %}
+    {% block content %} {% endblock %}
+  </body>
+</html>
