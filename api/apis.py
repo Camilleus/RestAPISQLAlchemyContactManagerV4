@@ -1,7 +1,7 @@
-from fastapi import FastAPI, HTTPException, Query, Depends, APIRouter, UploadFile, File
+from fastapi import FastAPI, HTTPException, Query, Depends, APIRouter, UploadFile, File, Request
 from fastapi.security import OAuth2PasswordBearer
-from fastapi_limiter import FastAPILimiter
-from fastapi_limiter.depends import RateLimiter
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 from sqlalchemy.orm import Session
 from datetime import date, timedelta
 from models import Contact, User, Token
@@ -9,10 +9,10 @@ from db.dbs import get_db, database
 from typing import List
 from auth.auths import get_current_active_user, login_for_access_token, get_current_user
 from auth.jwts import create_jwt_token, decode_jwt_token
-from models import Contact
 from schemas import ContactCreateUpdate, ContactResponse
 import cloudinary.uploader
-
+from functools import wraps
+import time
 
 app = FastAPI()
 
@@ -20,9 +20,38 @@ app = FastAPI()
 router = APIRouter()
 
 
-limiter = FastAPILimiter([RateLimiter(second=60, max_calls=5)])
+limiter = Limiter(key_func=get_remote_address, default_limits=["1000 per hour"])
 
 
+app.state.limiter = limiter
+
+
+def rate_limited(max_calls: int, time_frame: int):
+    """
+    :param max_calls: Maximum number of calls allowed in the specified time frame.
+    :param time_frame: The time frame (in seconds) for which the limit applies.
+    :return: Decorator function.
+    """
+    def decorator(func):
+        calls = []
+        @wraps(func)
+        async def wrapper(request: Request, *args, **kwargs):
+            now = time.time()
+            calls_in_time_frame = [call for call in calls if call > now - time_frame]
+            if len(calls_in_time_frame) >= max_calls:
+                raise HTTPException(status_code=429, detail="Rate limit exceeded.")
+            calls.append(now)
+            return await func(request, *args, **kwargs)
+        return wrapper
+    return decorator
+
+
+@app.get("/")
+@rate_limited(max_calls=10, time_frame=60) 
+async def read_root(request: Request):
+    return {"Hello": "World"}
+    
+    
 app.add_middleware(limiter)
 
 
