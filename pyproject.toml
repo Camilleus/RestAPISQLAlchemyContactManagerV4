@@ -26,6 +26,7 @@ python-dotenv = "^1.0.1"
 fastapi-middleware = "^0.1.0"
 cloudinary = "^1.38.0"
 sphinx = "^7.2.6"
+slowapi = "^0.1.9"
 
 
 [build-system]
