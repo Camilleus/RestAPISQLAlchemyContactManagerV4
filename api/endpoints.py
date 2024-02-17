@@ -29,8 +29,8 @@ def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
-@app.get("/login")
-def read_login(request: Request):
+@app.get("/login", response_class=HTMLResponse)
+async def read_login(request: Request):
     """
     Read the login endpoint.
 
